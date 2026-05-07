@@ -166,13 +166,14 @@ ipcMain.handle('open-external', (_, url) => {
 
 ipcMain.handle('validate-license', async (_, key) => {
   try {
-    const res = await fetch('https://api.lemonsqueezy.com/v1/licenses/validate', {
+    const res = await fetch('https://api.lemonsqueezy.com/v1/licenses/activate', {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({ license_key: key }),
+      body: JSON.stringify({ license_key: key, instance_name: 'Stickieview' }),
     })
     const data = await res.json()
-    return { valid: data?.data?.attributes?.status === 'active' || data?.data?.valid === true, data }
+    const valid = data?.activated === true || data?.data?.activated === true
+    return { valid, data }
   } catch (err) {
     return { valid: false, error: err.message }
   }
