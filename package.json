@@ -2,6 +2,10 @@
   "name": "stickieview",
   "version": "1.0.0",
   "description": "A fast, local, offline sticky note dashboard for your desktop.",
+  "author": {
+    "name": "Sami Porkka",
+    "email": "samiporkka@proton.me"
+  },
   "main": "electron/main.js",
   "scripts": {
     "dev": "concurrently \"vite --port 5173\" \"wait-on http://localhost:5173 && electron . --no-sandbox\"",
