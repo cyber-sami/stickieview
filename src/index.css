@@ -553,6 +553,14 @@ input {
 
 .license-status.success { color: #27ae60; }
 .license-status.error { color: #c0392b; }
+.license-status.loading { color: #888; }
+
+.license-active-badge {
+  font-size: 14px;
+  font-weight: 600;
+  color: #27ae60;
+  margin-bottom: 4px;
+}
 
 .modal-actions {
   display: flex;

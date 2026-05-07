@@ -21,6 +21,9 @@ contextBridge.exposeInMainWorld('stickyAPI', {
   // Shell
   openExternal: (url) => ipcRenderer.invoke('open-external', url),
 
+  // License validation
+  validateLicense: (key) => ipcRenderer.invoke('validate-license', key),
+
   // Window controls
   windowMinimize: () => ipcRenderer.invoke('window-minimize'),
   windowMaximize: () => ipcRenderer.invoke('window-maximize'),

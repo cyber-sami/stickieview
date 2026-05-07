@@ -162,6 +162,22 @@ ipcMain.handle('open-external', (_, url) => {
   shell.openExternal(url)
 })
 
+// ── License validation ───────────────────────────────────────────────────────
+
+ipcMain.handle('validate-license', async (_, key) => {
+  try {
+    const res = await fetch('https://api.lemonsqueezy.com/v1/licenses/validate', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ license_key: key }),
+    })
+    const data = await res.json()
+    return { valid: data?.data?.attributes?.status === 'active' || data?.data?.valid === true, data }
+  } catch (err) {
+    return { valid: false, error: err.message }
+  }
+})
+
 // ── Window controls ──────────────────────────────────────────────────────────
 
 ipcMain.handle('window-minimize', () => mainWindow?.minimize())

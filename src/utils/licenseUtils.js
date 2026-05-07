@@ -16,6 +16,7 @@ export function formatLicenseInput(raw) {
 
 export function maskLicenseKey(key) {
   if (!key) return ''
-  const parts = key.split('-')
-  return parts.map((p, i) => (i < parts.length - 1 ? '****' : p)).join('-')
+  // Show first 8 chars, mask the rest
+  if (key.length <= 8) return key
+  return key.slice(0, 8) + '****…'
 }

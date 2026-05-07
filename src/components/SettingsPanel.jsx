@@ -61,10 +61,9 @@ export default function SettingsPanel({ onClose, onActivateLicense }) {
           <label>License</label>
           {isLicensed ? (
             <div>
-              <p className="settings-hint">
-                ⭐ Stickieview+ active — {maskLicenseKey(config.licenseKey)}
-              </p>
-              <button className="btn-danger" onClick={() => {
+              <p className="license-active-badge">✅ Stickieview+ Active</p>
+              <p className="settings-hint">{maskLicenseKey(config.licenseKey)}</p>
+              <button className="btn-danger" style={{ marginTop: 8 }} onClick={() => {
                 if (window.confirm("Remove license? You'll revert to 3 boards.")) removeLicense()
               }}>
                 Remove license
@@ -73,8 +72,8 @@ export default function SettingsPanel({ onClose, onActivateLicense }) {
           ) : (
             <div>
               <p className="settings-hint">Free plan — up to 3 boards</p>
-              <button className="btn-primary" onClick={() => { onClose(); onActivateLicense() }}>
-                Activate license
+              <button className="btn-primary" style={{ marginTop: 8 }} onClick={() => { onClose(); onActivateLicense() }}>
+                Activate License
               </button>
             </div>
           )}

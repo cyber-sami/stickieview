@@ -7,7 +7,7 @@ export default function UpgradePrompt({ onClose, onEnterKey }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  const openUpgrade = () => window.stickyAPI.openExternal('https://stickieview.app/upgrade')
+  const openUpgrade = () => window.stickyAPI.openExternal('https://samiporkka.lemonsqueezy.com/checkout/buy/94c5f94b-f49c-4926-952b-e054a1f65b07')
 
   return (
     <div className="modal-overlay" onClick={onClose}>
