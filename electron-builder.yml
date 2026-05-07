@@ -10,13 +10,16 @@ linux:
   target:
     - AppImage
     - deb
+  artifactName: stickieview-linux.${ext}
   category: Utility
   icon: assets/icon.png
   executableArgs:
     - --no-sandbox
 win:
   target: nsis
+  artifactName: stickieview-windows.${ext}
   icon: assets/icon.ico
 mac:
   target: dmg
+  artifactName: stickieview-mac.${ext}
   icon: assets/icon.icns
