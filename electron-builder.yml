@@ -12,6 +12,8 @@ linux:
     - deb
   category: Utility
   icon: assets/icon.png
+  executableArgs:
+    - --no-sandbox
 win:
   target: nsis
   icon: assets/icon.ico

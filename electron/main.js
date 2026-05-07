@@ -1,6 +1,4 @@
 const { app, BrowserWindow, ipcMain, shell } = require('electron')
-
-app.commandLine.appendSwitch('no-sandbox')
 const path = require('path')
 const fs = require('fs')
 const os = require('os')
