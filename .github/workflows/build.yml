@@ -26,6 +26,7 @@ jobs:
           path: |
             dist-electron/*.AppImage
             dist-electron/*.deb
+            dist-electron/latest-linux.yml
 
   build-windows:
     runs-on: windows-latest
@@ -39,7 +40,9 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: windows-artifacts
-          path: dist-electron/*.exe
+          path: |
+            dist-electron/*.exe
+            dist-electron/latest.yml
 
   build-mac:
     runs-on: macos-latest
@@ -55,7 +58,9 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: mac-artifacts
-          path: dist-electron/*.dmg
+          path: |
+            dist-electron/*.dmg
+            dist-electron/latest-mac.yml
 
   release:
     needs: [build-linux, build-windows, build-mac]

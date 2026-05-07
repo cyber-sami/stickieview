@@ -1,4 +1,5 @@
 const { app, BrowserWindow, ipcMain, shell } = require('electron')
+const { autoUpdater } = require('electron-updater')
 const path = require('path')
 const fs = require('fs')
 const os = require('os')
@@ -69,6 +70,7 @@ app.whenReady().then(async () => {
   await loadDeps()
   ensureStorageDir()
   createWindow()
+  if (app.isPackaged) setupAutoUpdater()
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
@@ -177,6 +179,27 @@ ipcMain.handle('validate-license', async (_, key) => {
   } catch (err) {
     return { valid: false, error: err.message }
   }
+})
+
+// ── Auto-updater ─────────────────────────────────────────────────────────────
+
+function setupAutoUpdater() {
+  autoUpdater.autoDownload = true
+  autoUpdater.autoInstallOnAppQuit = true
+
+  autoUpdater.on('update-downloaded', () => {
+    mainWindow?.webContents.send('update-downloaded')
+  })
+
+  autoUpdater.on('error', () => {
+    // silently ignore — don't crash the app over update failures
+  })
+
+  autoUpdater.checkForUpdates()
+}
+
+ipcMain.handle('install-update', () => {
+  autoUpdater.quitAndInstall()
 })
 
 // ── Window controls ──────────────────────────────────────────────────────────

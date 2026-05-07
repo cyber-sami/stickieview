@@ -6,6 +6,7 @@ import Board from './components/Board'
 import UpgradePrompt from './components/UpgradePrompt'
 import LicenseModal from './components/LicenseModal'
 import SettingsPanel from './components/SettingsPanel'
+import UpdateBar from './components/UpdateBar'
 
 export default function App() {
   const { loadFromDisk } = useBoardStore()
@@ -13,9 +14,11 @@ export default function App() {
   const [showUpgrade, setShowUpgrade] = useState(false)
   const [showLicense, setShowLicense] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
+  const [updateReady, setUpdateReady] = useState(false)
 
   useEffect(() => {
     loadFromDisk()
+    window.stickyAPI.onUpdateDownloaded(() => setUpdateReady(true))
   }, [loadFromDisk])
 
   const openLicenseFromUpgrade = () => {
@@ -25,6 +28,7 @@ export default function App() {
 
   return (
     <div className="app">
+      {updateReady && <UpdateBar />}
       <Toolbar
         onUpgradePrompt={() => setShowUpgrade(true)}
         onOpenLicense={() => setShowLicense(true)}

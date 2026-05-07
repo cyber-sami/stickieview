@@ -1,5 +1,9 @@
 appId: app.stickieview
 productName: Stickieview
+publish:
+  provider: github
+  owner: cyber-sami
+  repo: stickieview
 directories:
   output: dist-electron
 files:

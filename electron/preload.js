@@ -24,6 +24,10 @@ contextBridge.exposeInMainWorld('stickyAPI', {
   // License validation
   validateLicense: (key) => ipcRenderer.invoke('validate-license', key),
 
+  // Auto-update
+  onUpdateDownloaded: (cb) => ipcRenderer.on('update-downloaded', cb),
+  installUpdate: () => ipcRenderer.invoke('install-update'),
+
   // Window controls
   windowMinimize: () => ipcRenderer.invoke('window-minimize'),
   windowMaximize: () => ipcRenderer.invoke('window-maximize'),
