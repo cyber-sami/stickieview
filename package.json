@@ -1,0 +1,27 @@
+{
+  "name": "stickieview",
+  "version": "1.0.0",
+  "description": "A fast, local, offline sticky note dashboard for your desktop.",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "concurrently \"vite --port 5173\" \"wait-on http://localhost:5173 && electron . --no-sandbox\"",
+    "build": "vite build && electron-builder",
+    "preview": "electron ."
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^4.5.2",
+    "electron-store": "^8.2.0",
+    "electron-auto-launch": "^5.0.6",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "electron": "^28.3.3",
+    "vite": "^5.4.2",
+    "@vitejs/plugin-react": "^4.3.1",
+    "electron-builder": "^24.13.3",
+    "concurrently": "^8.2.2",
+    "wait-on": "^7.2.0"
+  }
+}
