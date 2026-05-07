@@ -184,8 +184,12 @@ ipcMain.handle('validate-license', async (_, key) => {
 // ── Auto-updater ─────────────────────────────────────────────────────────────
 
 function setupAutoUpdater() {
-  autoUpdater.autoDownload = true
-  autoUpdater.autoInstallOnAppQuit = true
+  autoUpdater.autoDownload = false
+  autoUpdater.autoInstallOnAppQuit = false
+
+  autoUpdater.on('update-available', () => {
+    mainWindow?.webContents.send('update-available')
+  })
 
   autoUpdater.on('update-downloaded', () => {
     mainWindow?.webContents.send('update-downloaded')
@@ -197,6 +201,10 @@ function setupAutoUpdater() {
 
   autoUpdater.checkForUpdates()
 }
+
+ipcMain.handle('download-update', () => {
+  autoUpdater.downloadUpdate()
+})
 
 ipcMain.handle('install-update', () => {
   autoUpdater.quitAndInstall()

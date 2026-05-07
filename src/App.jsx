@@ -14,11 +14,9 @@ export default function App() {
   const [showUpgrade, setShowUpgrade] = useState(false)
   const [showLicense, setShowLicense] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
-  const [updateReady, setUpdateReady] = useState(false)
 
   useEffect(() => {
     loadFromDisk()
-    window.stickyAPI.onUpdateDownloaded(() => setUpdateReady(true))
   }, [loadFromDisk])
 
   const openLicenseFromUpgrade = () => {
@@ -28,7 +26,7 @@ export default function App() {
 
   return (
     <div className="app">
-      {updateReady && <UpdateBar />}
+      <UpdateBar />
       <Toolbar
         onUpgradePrompt={() => setShowUpgrade(true)}
         onOpenLicense={() => setShowLicense(true)}
