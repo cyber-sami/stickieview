@@ -16,7 +16,7 @@ linux:
     - deb
   artifactName: stickieview-linux.${ext}
   category: Utility
-  icon: assets/icon.png
+  icon: assets/icons/
   executableArgs:
     - --no-sandbox
 win:
